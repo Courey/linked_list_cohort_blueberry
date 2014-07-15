@@ -23,7 +23,34 @@ class LinkedList
   end
 
   def sort!
-    "|  |"
+    unless sorted?
+      current_item = @first_item
+      count = 0
+
+      while count < (size - 1)
+
+        if current_item.next_item != nil && current_item != nil
+
+          test_value = current_item <=> current_item.next_item
+
+          if test_value == 1
+            swap_index = index(current_item.payload)
+            swap_with_next(swap_index)
+            current_item = current_item.next_item
+            sort!
+          else
+            current_item = current_item.next_item
+          end
+
+          count += 1
+        else
+          count += 1
+        end
+
+      end
+    
+    end
+    self.to_s
   end
 
   def swap_with_next (index)
